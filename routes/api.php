@@ -21,6 +21,28 @@ Route::get(
         "Tenet invoice details demo. Mounted over Laravel " . app()->version(),
         200));
 
-Route::get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('customers')->group( function() {
+    Route::resource('/', \App\Http\Controllers\CustomerController::class)->only([
+        'index', 'show', 'destroy'
+    ]);
+    Route::prefix('/{customer}')->group(function(){
+        Route::get('/invoices', [\App\Http\Controllers\InvoiceController::class, 'customerList']);
+        Route::post('/create-invoice', [\App\Http\Controllers\InvoiceController::class, 'createInvoiceForCustomer']);
+    });
 });
+
+Route::resource('invoices', \App\Http\Controllers\InvoiceController::class)->only([
+    'index', 'show', 'destroy'
+]);
+
+Route::resource('services', \App\Http\Controllers\ServiceController::class)->only([
+    'index', 'show'
+]);
+
+Route::resource('services/{service}/consumptions', \App\Http\Controllers\ServiceConsumptionController::class)->only([
+    'index', 'store'
+]);
+
+Route::resource('service-consumptions', \App\Http\Controllers\ServiceConsumptionController::class)->only([
+    'show', 'destroy'
+]);
