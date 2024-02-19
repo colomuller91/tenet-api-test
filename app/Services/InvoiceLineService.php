@@ -9,6 +9,10 @@ use App\Models\ServiceConsumption;
 
 class InvoiceLineService
 {
+    /**
+     * @param ServiceConsumption $consumption
+     * @return string
+     */
     private function getDetailDescription(ServiceConsumption $consumption) {
 
         /** @var Service $service */
@@ -20,6 +24,10 @@ class InvoiceLineService
         return trim("$description $forPeriodText");
     }
 
+    /**
+     * @param ServiceConsumption $consumption
+     * @return InvoiceLine
+     */
     public function create(ServiceConsumption $consumption): InvoiceLine {
 
         return new InvoiceLine([

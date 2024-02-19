@@ -5,6 +5,8 @@ namespace App\Services;
 use App\Models\Customer;
 use App\Models\Invoice;
 use App\Models\ServiceConsumption;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class InvoiceService
@@ -22,13 +24,15 @@ class InvoiceService
 
     /**
      * @param Customer $customer
-     * @param $daysTo
+     * @param $consumptionsFrom
      * @return Invoice
      */
-    public function createInvoice(Customer $customer, $daysTo) {
+    public function createInvoice(Customer $customer, $consumptionsFrom): Invoice {
+
+        //Find not billed consumptions
         $consumptions = $customer->serviceConsumptions()
             ->with('service')
-            ->where('created_at', '>=', now()->subDays($daysTo))
+            ->where('created_at', '>=', now()->subDays($consumptionsFrom))
             ->whereDoesntHave('invoiceLine.invoice')
             ->get();
 
@@ -42,6 +46,8 @@ class InvoiceService
             'customer_id' => $customer->id]);
 
         $invoiceDetails = [];
+
+        //Generate invoice details
         $consumptions->each(
         /** @param ServiceConsumption $item */
             function(ServiceConsumption $item) use (&$invoiceDetails) {
@@ -55,11 +61,18 @@ class InvoiceService
         return $invoice->load('lines');
     }
 
-    public function listAll() {
-        return Invoice::with(['customer','lines']);
+    /**
+     * @return Collection
+     */
+    public function listAll(): Collection {
+        return Invoice::with(['customer','lines'])->get();
     }
 
-    public function listAllForCustomer(Customer $customer) {
+    /**
+     * @param Customer $customer
+     * @return Collection
+     */
+    public function listAllForCustomer(Customer $customer): Collection {
         return Invoice::with(['customer','lines'])
             ->where('customer_id', $customer->id)
             ->get();

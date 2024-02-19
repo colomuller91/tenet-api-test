@@ -43,6 +43,10 @@ class InvoiceLine extends BaseModel
         return $this->hasOne(ServiceConsumption::class, 'service_consumption_id');
     }
 
+    /**
+     * Get invoice detail subtotal
+     * @return float
+     */
     public function getTotalLineAttribute() {
         return round($this->quantity * $this->unit_price, config('app.currency.decimals'));
     }

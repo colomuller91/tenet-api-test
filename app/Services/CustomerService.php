@@ -3,10 +3,14 @@
 namespace App\Services;
 
 use App\Models\Customer;
+use Illuminate\Database\Eloquent\Collection;
 
 class CustomerService
 {
-    public function listAll() {
+    /**
+     * @return Collection
+     */
+    public function listAll(): Collection {
         return Customer::all();
     }
 

@@ -3,14 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * List all services
      */
-    public function index()
+    public function index(): Collection
     {
         return Service::all();
     }
@@ -19,7 +20,7 @@ class ServiceController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Service $service)
+    public function show(Service $service): Service
     {
         if (request()->query('with-consumptions', false)) {
             $service->load([

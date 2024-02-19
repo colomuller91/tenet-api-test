@@ -35,6 +35,10 @@ class Service extends BaseModel
     }
 
 
+    /**
+     * Matches by identifier which service must be used to calculate billing
+     * @return ConsumptionCalculationInterface
+     */
     public function getCalculationService(): ConsumptionCalculationInterface {
         $serviceClasss = match ($this->identifier) {
             ServiceIdentifier::Backoffice => BackofficeService::class,

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Customer;
 use App\Models\Invoice;
 use App\Services\InvoiceService;
+use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -17,23 +19,26 @@ class InvoiceController extends Controller
     }
 
 
-
-    public function index()
-    {
+    /**
+     * List all invoices
+     */
+    public function index(): Collection {
         return $this->invoiceService->listAll();
     }
 
-    public function customerList(Customer $customer)
+    /**
+     * @param Customer $customer
+     * @return Collection
+     */
+    public function customerList(Customer $customer): Collection
     {
-        $invoices = $this->invoiceService->listAllForCustomer($customer);
-
-        return response()->json($invoices);
+        return $this->invoiceService->listAllForCustomer($customer);
     }
 
     /**
      * Create an invoice for supplied customer
      */
-    public function createInvoiceForCustomer(Customer $customer)
+    public function createInvoiceForCustomer(Customer $customer): Invoice | JsonResponse
     {
         $lastDays = request()->query('last-days', 15);
 
@@ -46,13 +51,13 @@ class InvoiceController extends Controller
             );
         }
 
-        return response()->json($invoice, 201);
+        return $invoice;
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Invoice $invoice)
+    public function show(Invoice $invoice): Invoice
     {
         return $invoice->load([
             'lines',
@@ -63,7 +68,7 @@ class InvoiceController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Invoice $invoice)
+    public function destroy(Invoice $invoice): JsonResponse
     {
         $invoice->delete();
         return response()->json(['message' => 'Invoice deleted']);

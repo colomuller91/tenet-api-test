@@ -4,6 +4,8 @@ namespace App\Models;
 
 use App\Contracts\ConsumptionCalculationInterface;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class ServiceConsumption extends BaseModel
 {
@@ -22,26 +24,41 @@ class ServiceConsumption extends BaseModel
         'to_date' => 'date:Y-m-d H:i:s'
     ];
 
-    public function service() {
+    /**
+     * @return BelongsTo
+     */
+    public function service(): BelongsTo {
         return $this->belongsTo(Service::class, 'service_id');
     }
 
-    public function invoiceLine() {
+    /**
+     * @return HasOne
+     */
+    public function invoiceLine(): HasOne {
         return $this->hasOne(InvoiceLine::class, 'service_consumption_id');
     }
 
-    public function customer() {
+    /**
+     * @return BelongsTo
+     */
+    public function customer(): BelongsTo {
         return $this->belongsTo(Customer::class, 'customer_id');
     }
 
 
-    public function getQuantity() {
+    /**
+     * @return float
+     */
+    public function getQuantity(): float {
         /** @var ConsumptionCalculationInterface $calculationService */
         $calculationService = $this->service->getCalculationService();
         return $calculationService->getQuantity($this);
     }
 
-    public function getUnitPrice() {
+    /**
+     * @return float
+     */
+    public function getUnitPrice():float {
         return $this->service->unit_price;
     }
 }

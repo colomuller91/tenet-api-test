@@ -16,10 +16,16 @@ class Customer extends BaseModel
         'vat_id'
     ];
 
+    /**
+     * @return HasMany
+     */
     public function invoices(): HasMany {
         return $this->hasMany(Invoice::class, 'customer_id');
     }
 
+    /**
+     * @return HasMany
+     */
     public function serviceConsumptions(): HasMany {
         return $this->hasMany(ServiceConsumption::class, 'customer_id');
     }
