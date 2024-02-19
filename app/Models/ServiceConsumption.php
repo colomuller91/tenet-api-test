@@ -19,6 +19,13 @@ class ServiceConsumption extends BaseModel
         'quantity'
     ];
 
+    protected $hidden = [
+        'service_id',
+        'customer_id',
+        'created_at',
+        'updated_at'
+    ];
+
     protected $casts = [
         'from_date' => 'date:Y-m-d H:i:s',
         'to_date' => 'date:Y-m-d H:i:s'

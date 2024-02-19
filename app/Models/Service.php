@@ -23,6 +23,13 @@ class Service extends BaseModel
         'unit_price'
     ];
 
+    protected $hidden = [
+        'identifier',
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
+
     protected $casts = [
         'identifier' => ServiceIdentifier::class
     ];
