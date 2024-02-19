@@ -71,25 +71,25 @@ class ServiceConsumptionController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ServiceConsumption $serviceConsumption)
+    public function show(ServiceConsumption $service_consumption)
     {
-        return $serviceConsumption->load('customer');
+        return $service_consumption->load('customer');
     }
 
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Service $service, ServiceConsumption $consumption)
+    public function destroy(ServiceConsumption $service_consumption)
     {
-        if ($consumption->invoiceLine()->exists() && $consumption->invoiceLine->invoice()->exists()){
+        if ($service_consumption->invoiceLine()->exists() && $service_consumption->invoiceLine->invoice()->exists()){
             return response()->json(
                 ['message' => 'Service consumption can\'t be deleted, it\'s associated to an invoice line'],
                 400
             );
         }
 
-        $consumption->deleteOrFail();
+        $service_consumption->deleteOrFail();
         return response()->json(['message' => 'Service consumption deleted']);
     }
 }
