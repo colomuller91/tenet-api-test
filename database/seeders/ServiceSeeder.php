@@ -2,10 +2,8 @@
 
 namespace Database\Seeders;
 
-use App\Enums\BillingType;
 use App\Enums\ServiceIdentifier;
 use App\Models\Service;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class ServiceSeeder extends Seeder

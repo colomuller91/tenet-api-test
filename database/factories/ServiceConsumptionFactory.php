@@ -2,11 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Enums\BillingType;
 use App\Enums\ServiceIdentifier;
 use App\Models\Service;
 use App\Models\ServiceConsumption;
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**

@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Contracts\ConsumptionCalculationInterface;
-use App\Enums\BillingType;
 use App\Enums\ServiceIdentifier;
 use App\Services\ConsumptionQuantity\BackofficeService;
 use App\Services\ConsumptionQuantity\ProxyService;

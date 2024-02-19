@@ -1,6 +1,5 @@
 <?php
 
-use App\Enums\BillingType;
 use App\Enums\ServiceIdentifier;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
