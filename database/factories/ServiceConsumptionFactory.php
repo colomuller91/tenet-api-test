@@ -92,7 +92,7 @@ class ServiceConsumptionFactory extends Factory
             }
 
             $consumption->from_date = $dateReference->clone()->firstOfMonth()->startOfDay();
-            $consumption->to_date = $dateReference->clone()->firstOfMonth()->endOfDay();
+            $consumption->to_date = $dateReference->clone()->lastOfMonth()->endOfDay();
             $consumption->created_at = $consumption->from_date;
             $consumption->save();
 
