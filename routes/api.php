@@ -21,10 +21,10 @@ Route::get(
         "Tenet invoice details demo. Mounted over Laravel " . app()->version(),
         200));
 
+Route::resource('customers', \App\Http\Controllers\CustomerController::class)->only([
+    'index', 'show', 'destroy'
+]);
 Route::prefix('customers')->group( function() {
-    Route::resource('/', \App\Http\Controllers\CustomerController::class)->only([
-        'index', 'show', 'destroy'
-    ]);
     Route::prefix('/{customer}')->group(function(){
         Route::get('/invoices', [\App\Http\Controllers\InvoiceController::class, 'customerList']);
         Route::post('/create-invoice', [\App\Http\Controllers\InvoiceController::class, 'createInvoiceForCustomer']);
