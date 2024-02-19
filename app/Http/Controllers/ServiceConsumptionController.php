@@ -17,7 +17,8 @@ class ServiceConsumptionController extends Controller
     public function index(Service $service)
     {
         return $service->consumptions()->get()->load([
-            'customer' => fn($q) => $q->withTrashed()
+            'customer' => fn($q) => $q->withTrashed(),
+            'service'
         ]);
     }
 
