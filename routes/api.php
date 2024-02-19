@@ -27,6 +27,7 @@ Route::resource('customers', \App\Http\Controllers\CustomerController::class)->o
 Route::prefix('customers')->group( function() {
     Route::prefix('/{customer}')->group(function(){
         Route::get('/invoices', [\App\Http\Controllers\InvoiceController::class, 'customerList']);
+        Route::get('/consumptions', [\App\Http\Controllers\ServiceConsumptionController::class, 'customerConsumptions']);
         Route::post('/create-invoice', [\App\Http\Controllers\InvoiceController::class, 'createInvoiceForCustomer']);
     });
 });

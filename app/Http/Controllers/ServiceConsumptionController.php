@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Enums\ServiceIdentifier;
+use App\Models\Customer;
 use App\Models\Service;
 use App\Models\ServiceConsumption;
 use Carbon\Carbon;
@@ -67,6 +68,16 @@ class ServiceConsumptionController extends Controller
 
         return ServiceConsumption::create($data);
     }
+
+    /**
+     * @param Customer $customer
+     */
+    public function customerConsumptions(Customer $customer) {
+        return ServiceConsumption::with('service')
+            ->where('customer_id', $customer->id)
+            ->get();
+    }
+
 
     /**
      * Display the specified resource.
