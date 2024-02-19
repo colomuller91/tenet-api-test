@@ -46,7 +46,7 @@ class InvoiceTest extends TestCase
         $lastDays = rand(10,30);
 
         $notBilledConsumptions = $customer->serviceConsumptions()
-            ->where('created_at', '>', now()->subDays($lastDays))
+            ->where('created_at', '>=', now()->subDays($lastDays))
             ->whereDoesntHave('invoiceLine.invoice')
             ->count();
 
