@@ -185,4 +185,8 @@ return [
         // 'Example' => App\Facades\Example::class,
     ])->toArray(),
 
+    'currency' => [
+        'decimals' => env('CURRENCY_DECIMAL_COUNT_TOTALS', 2)
+    ]
+
 ];
