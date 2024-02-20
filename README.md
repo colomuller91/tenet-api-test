@@ -8,8 +8,8 @@ Through migrations you will obtain some fake entities to generate your first inv
 
 The relationships between each entity are defined by the following class diagram:
 
-<p style="text-align: center">
-<img style="text-align: center" src="./resources/diagram/img.png" width="700" alt="Class diagram">
+<p align="center">
+<img src="./resources/diagram/img.png" width="700" alt="Class diagram">
 </p>
 
 
@@ -89,10 +89,10 @@ Also, a <b>postman collection</b> is in root folder of project
 
 
 <hr>
-<h3 style="text-align: center">
+<h3 align="center">
     <b>Juan Pablo Müller</b><br>
 </h3>
-<h4 style="text-align: center">
+<h4 align="center">
     <a href="https://www.linkedin.com/in/colomu/">LinkedIn</a><br>
     <a href="https://colomuller91.github.io">Online resume</a><br>
     <a href="https://github.com/colomuller91">Personal repo</a><br>
