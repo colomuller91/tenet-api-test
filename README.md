@@ -18,7 +18,7 @@ The relationships between each entity are defined by the following class diagram
 The application is written on Laravel + Sail to have a dockerized development environment in a very short time. 
 DB engine is Mysql in two separate instances (application and testing)
 
-Some SOLID principles were applied, for example in commit bd44cf67, Single Responsibility Principle
+Some SOLID principles were applied, for example in **[this commit](https://github.com/colomuller91/tenet-api-test/commit/bd44cf67e6e27f1f1bc312e2fb88d88431ecb5ae)**, Single Responsibility Principle
 
 Factories and seeders were used to create initial data.
 
