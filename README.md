@@ -18,7 +18,7 @@ The relationships between each entity are defined by the following class diagram
 The application is written on Laravel + Sail to have a dockerized development environment in a very short time. 
 DB engine is Mysql in two separate instances (application and testing)
 
-Algunos principios SOLID fueron aplicados como por ejemplo en el commit bd44cf67, Single Responsibility Principle
+Some SOLID principles were applied, for example in commit bd44cf67, Single Responsibility Principle
 
 Factories and seeders were used to create initial data.
 
