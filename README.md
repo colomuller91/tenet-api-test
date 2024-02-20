@@ -85,7 +85,7 @@ You can list all app endpoints using `artisan` command
 sail artisan route:list --path=api
 ```
 
-Also, a <b>postman collection</b> is in root folder of project
+Also, you can find a <b>postman collection</b> in root folder
 
 
 <hr>
