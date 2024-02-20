@@ -40,7 +40,7 @@ when you create the invoice.
 
 ### How to install
 
-You only few dependencies:  php, composer, docker and docker-compose to start the application:
+You only need a few dependencies:  php, composer, docker and docker-compose to start the application:
 
 ```
 ### first clone the repo
